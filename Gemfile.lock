@@ -1,0 +1,13 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    open3 (0.1.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  open3
+
+BUNDLED WITH
+   1.17.2
