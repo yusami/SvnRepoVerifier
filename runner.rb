@@ -16,12 +16,12 @@ class SvnRepoVerifier
     cmd = ["svnadmin", "-r", "#{repo[:rev]}:HEAD", "verify", repo[:path]]
     puts '-command: "'+cmd.join(" ")+'"'
     o, e, s = Open3.capture3({"LC_ALL"=>"en_US.UTF-8"}, cmd.join(' '))
+    puts "-----status-----\n#{s}"
     puts "-----out-----\n#{o}"
     puts "-----error-----\n#{e}"
     if e.length > 0 then
       @failure += 1
     end
-    puts "-----status-----\n#{s}"
   end
 
   def get_latest_rev(path)
@@ -107,6 +107,7 @@ class SvnRepoVerifier
     update_config
     # Result
     show_result
+    raise "svn error" if @failure > 0
   end
 end
 
