@@ -25,6 +25,7 @@ class SvnRepoVerifier
   end
 
   def get_latest_rev(path)
+    puts "-----summary-----"
     cmd = ["svnlook", "youngest", path]
     puts '-command: "'+cmd.join(" ")+'"'
     rev = nil
@@ -57,17 +58,14 @@ class SvnRepoVerifier
   end
 
   def update_config
-    puts "-Updating config..."
-
     # See if any changes are added.
     new_digest = Digest::MD5.hexdigest(@sites.to_s)
-    # puts @digest
-    # puts new_digest
     if @digest == new_digest then
-      puts "-Nothing to update as no changes are found."
+      puts "-Nothing to update since no changes are found."
       return
     end
 
+    puts "-Update config..."
     # Keep the current config for safety.
     FileUtils.copy(@config_file, @config_file+".bak")
 
@@ -79,7 +77,9 @@ class SvnRepoVerifier
   end
 
   def show_result
+    puts "-----result-----"
     puts "-Total: %d, Success: %d, Failure: %d" % [@total, @total-@failure, @failure]
+    echo "***failed***" if @failure > 0
   end
 
   def do_all_queries
@@ -92,7 +92,7 @@ class SvnRepoVerifier
 
     puts "-Verifying repositories..."
     @sites[:Repositories].each do |entry|
-     do_verify(entry)
+      do_verify(entry)
       rev = get_latest_rev(entry[:path])
       # puts rev
       if rev.match(/^\d+$/) then
@@ -107,7 +107,6 @@ class SvnRepoVerifier
     update_config
     # Result
     show_result
-    raise "svn error" if @failure > 0
   end
 end
 
