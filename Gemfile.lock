@@ -1,13 +1,13 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    open3 (0.1.1)
+    open3 (0.1.2)
 
 PLATFORMS
-  ruby
+  arm64-darwin-22
 
 DEPENDENCIES
   open3
 
 BUNDLED WITH
-   2.2.22
+   2.4.12

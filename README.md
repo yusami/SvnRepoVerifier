@@ -12,7 +12,7 @@
 
 ## Requirement
 
-* Ruby 2.7
+* Ruby 3.1
 * open3
 
 ~~~
@@ -49,7 +49,7 @@ pid 3673 exit 0
 
 ## Licence
 
-* Copyright &copy; 2020-2022 yusami
+* Copyright &copy; 2020-2023 yusami
 * Licensed under the [Apache License, Version 2.0][Apache]
 
 [Apache]: http://www.apache.org/licenses/LICENSE-2.0
